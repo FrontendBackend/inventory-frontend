@@ -1,1 +1,12 @@
 <p>home works!</p>
+<br>
+
+<input type="file" (change)="upload($event)">
+
+<br>
+
+<table *ngIf="data">
+  <tr *ngFor="let row of data">
+     <td *ngFor="let cell of row">{{cell}}</td>
+  </tr>
+</table>
