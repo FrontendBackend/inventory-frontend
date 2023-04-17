@@ -1,0 +1,55 @@
+.mat-column-descripcion {
+  flex: 0 0 35% !important;
+  justify-content: left !important;
+}
+.mat-column-fePrestamo {
+  flex: 0 0 15% !important;
+  justify-content: left !important;
+}
+.mat-column-feCancelado {
+  flex: 0 0 15% !important;
+  justify-content: left !important;
+}
+
+.mat-column-monto {
+  flex: 0 0 8% !important;
+  justify-content: right !important;
+}
+
+.mat-column-estado {
+  flex: 0 0 9% !important;
+  justify-content: right !important;
+}
+
+.mat-column-acciones {
+  flex: 0 0 15% !important;
+  justify-content: left !important;
+}
+
+.simple-list{
+  overflow-y: scroll;
+}
+
+.example-container {
+  overflow-y: auto;
+}
+
+.contenedor::-webkit-scrollbar {
+  width: 8px;     /* Tamaño del scroll en vertical */
+  height: 8px;    /* Tamaño del scroll en horizontal */
+  display: none;  /* Ocultar scroll */
+}
+
+.example-table-container {
+  position: relative;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.colorIconRed {
+  color: red;
+}
+.colorIconVerde {
+  color: green;
+}

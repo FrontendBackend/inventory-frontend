@@ -8,22 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  data: string[][] | any;
+  /* data: string[][] | any; */
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
-   upload(event: any) {
-      let file = event.target.files[0];
-      let formData = new FormData();
-      formData.append('file', file);
+  /* upload(event: any) {
+     let file = event.target.files[0];
+     let formData = new FormData();
+     formData.append('file', file);
 
-      this.http.post('http://localhost:1999/inv/api/v1/import-excel', formData)
-         .subscribe( (data: string[][] | any) => {
-          this.data = data;
-       });
-   }
+     this.http.post('http://localhost:1999/inv/api/v1/import-excel', formData)
+        .subscribe( (data: string[][] | any) => {
+         this.data = data;
+      });
+  } */
 
 }

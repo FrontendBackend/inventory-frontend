@@ -1,0 +1,43 @@
+<div fxLayout="row" class="contenedor-pgim-formulario mat-elevation-z1">
+  <div fxLayout="row" fxFlex>
+      <div fxFlex>
+          <h2>
+              <strong> {{etiquetaTitulo}} </strong>
+          </h2>
+      </div>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-toolbar class="mat-elevation-z1" *ngIf="incrustadoEnDialogo == 0">
+  <div fxLayoutAlign="start stretch" fxLayoutGap="8px">
+      <button mat-button (click)="retornar()" matTooltip="Retornar a la ventana anterior">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  </div>
+  <div fxFlex>
+  </div>
+</mat-toolbar>
+
+<br />
+
+<mat-sidenav-container>
+
+  <div class="formulario-unidad-minera-wrap" fxLayout="column" fxLayoutWrap="wrap" *ngIf="!enProceso">
+      <div class="full-width">
+          <mat-tab-group animationDuration="1ms" [selectedIndex]="pestaniaSeleccionada">
+              <mat-tab>
+                  <ng-template mat-tab-label>
+                      <mat-icon class="example-tab-icon">crop_original</mat-icon>
+                      GENERAL
+                  </ng-template>
+                  <ng-template matTabContent>
+                      <app-persona-general *ngIf="tblPersonaDTO" [tblPersonaDTO]="tblPersonaDTO" [tipoAccionCrud]="tipoAccionCrud" (eventoPersonaModificado)="eventoMatrizSupervisionModificado($event)"></app-persona-general>
+                  </ng-template>
+              </mat-tab>
+          </mat-tab-group>
+      </div>
+  </div>
+
+</mat-sidenav-container>

@@ -1,0 +1,89 @@
+<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="10px">
+  <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 3 * 100 + 'ms', y: '50px' } }" fxFlex>
+    <label><b>Modificar el detalle del prestamo</b></label>
+
+    <br> <br>
+
+    <form fxLayout="column" [formGroup]="frmReactivoPrestamo" (ngSubmit)="enviarPrestamo()">
+
+      <div fxLayout="row" *ngIf="enProcesoPrestamo">
+        <mat-progress-bar mode="query" color="accent" fxFlex></mat-progress-bar>
+        <br />
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Fecha de prestamo</mat-label>
+          <input matInput type="text" formControlName="fePrestamo" autocomplete="off" [matDatepicker]="dpFePrestamo"
+            [class.is-invalid]="tieneError2('fePrestamo', 'any')" />
+          <mat-datepicker-toggle matSuffix [for]="dpFePrestamo"></mat-datepicker-toggle>
+          <mat-datepicker #dpFePrestamo></mat-datepicker>
+
+          <mat-error *ngIf="tieneError2('fePrestamo', 'required')">
+            Es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Fecha de cancelación</mat-label>
+          <input matInput type="text" formControlName="feCancelado" autocomplete="off" [matDatepicker]="dpFeCancelado"
+            [class.is-invalid]="tieneError2('feCancelado', 'any')" />
+          <mat-datepicker-toggle matSuffix [for]="dpFeCancelado"></mat-datepicker-toggle>
+          <mat-datepicker #dpFeCancelado></mat-datepicker>
+          <mat-error *ngIf="tieneError2('feCancelado', 'required')">
+            Es requerido
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <textarea type="text" #textAreaInfoAcceso matInput rows="5" maxlength="1024" autocomplete="off"
+            formControlName="descripcion" [class.is-invalid]="tieneError2('descripcion', 'any')"></textarea>
+          <mat-hint align="end">{{ textAreaInfoAcceso.value?.length || 0 }}/1024</mat-hint>
+          <mat-error *ngIf="tieneError2('descripcion', 'required')">
+            Es requerido
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Monto S/.</mat-label>
+          <input matInput type="text" formControlName="monto" autocomplete="off" currencyMask
+            [options]="{ prefix: '', thousands: ',', decimal: '.' }" [class.is-invalid]="tieneError2('monto', 'any')" />
+          <mat-error *ngIf="tieneError2('monto', 'required')">
+            Es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Monto a restar o sumar S/.</mat-label>
+          <input matInput #inputMontoOperar formControlName="montoOperar" autocomplete="off" currencyMask
+            [options]="{ prefix: '', thousands: ',', decimal: '.' }" (keyup)="seCambioMontoSubTotal(inputMontoOperar.value)" matTooltip="Dar ENTER cuando haya ingresado el monto a restar(-) o sumar(+) para que de efecto el monto"/>
+        </mat-form-field>
+      </div>
+
+      <div align="start" *ngIf="!esFormularioSoloLectura">
+        <button type="submit" cdkFocusInitial mat-flat-button color="primary" [disabled]="enProcesoPrestamo">
+          <mat-icon>save</mat-icon>
+          {{accion}}
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+
+  <!-- Lista de Historial del prestamo -->
+  <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 4 * 100 + 'ms', y: '50px' } }" fxFlex="65">
+
+    <label><b>Historial del prestamo</b></label>
+    <br><br>
+
+    <app-prestamo-historial-lista *ngIf="tblPrestamoDTO" [tblPrestamoDTO]="tblPrestamoDTO"></app-prestamo-historial-lista>
+  </mat-card>
+</div>

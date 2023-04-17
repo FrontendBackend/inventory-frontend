@@ -1,0 +1,458 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.contenedor-pgim-formulario {
+  position: relative;
+  padding: 5px;
+  margin: 0px;
+}
+
+.contenedor-principal {
+  width: 100%;
+  flex: 100%;
+  padding: 10px;
+  min-height: 1200px;
+}
+
+.contenedor-elementos-elevados {
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+/* Definición de colores para los snackBar */
+
+.success-snackbar {
+  background: #d4edda;
+  // color: #155724;
+}
+
+.info-snackbar {
+  background: #cce5ff;
+  color: #2b639e;
+}
+
+.warning-snackbar {
+  background: #fff3cd;
+  color: #ae9548;
+}
+
+.error-snackbar {
+  background: #f8d7da;
+  color: #b67b80;
+}
+
+/* Definición de alertas */
+
+.alerta-neutral {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.alerta-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alerta-info {
+  background-color: #cce5ff;
+  color: #2b639e;
+}
+
+.alerta-warning {
+  background-color: #fff3cd;
+  color: #ae9548;
+}
+
+.alerta-danger {
+  background-color: #f8d7da;
+  color: #b67b80;
+}
+
+.alerta-dark {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.alerta-secondary {
+  background-color: #e0e0e0;
+  color: #3b3f42;
+}
+
+.alerta {
+  padding: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.interna-izquierda {
+  padding: 5px;
+  text-align: left;
+}
+
+.md-badge-alerta-danger {
+  background-color: #f8d7da;
+  color: #b67b80;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-success {
+  background-color: #d4edda;
+  color: #155724;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-info {
+  background-color: #cce5ff;
+  color: #2b639e;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-warning {
+  background-color: #fff3cd;
+  color: #ae9548;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-secondary {
+  background-color: #e0e0e0;
+  color: #3b3f42;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-neutral {
+  background-color: #ffffff;
+  color: #000000;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-dark {
+  background-color: #343a40;
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta {
+  background-color: #f5f5f5;
+  margin-bottom: 15px;
+  text-align: center;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.md-badge-alerta-especial-secondary {
+  background-color: #e0e0e0;
+  color: #3b3f42;
+  margin-bottom: 10px;
+  text-align: center;
+  margin: 4px;
+  padding: 4px 4px;
+  border-radius: 5px;
+}
+
+.md-badge-alerta-especial-dark {
+  background-color: #343a40;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-align: center;
+  margin: 4px;
+  padding: 4px 4px;
+  border-radius: 5px;
+}
+
+
+/* Animaciones */
+
+.animated {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.td-texto-inicio {
+  display: table-cell;
+  vertical-align: baseline;
+}
+
+.full-screen-modal {
+  max-width: unset !important;
+  width: 100%;
+  height: 100%;
+  .mat-dialog-container {
+      max-width: 100vw;
+      max-height: 100vh;
+      height: 100%;
+      width: 100%;
+      .mat-dialog-content {
+          max-height: unset !important;
+      }
+      .mat-dialog-actions {
+          position: fixed;
+          left: 0px;
+          bottom: 20px;
+          height: 30px;
+          background-color: #f3f3f3;
+          width: 100%;
+          z-index: 50000;
+          .mat-button {
+              margin-right: 10px;
+          }
+      }
+  }
+}
+
+.celda-espaciada-centrada {
+  vertical-align: middle;
+  font-style: italic;
+  padding: 1rem;
+}
+
+.celda-numerica {
+  vertical-align: middle;
+  text-align: right;
+  padding: 1rem;
+}
+
+.celda-espaciada-centrada-principal {
+  vertical-align: middle;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.mas-menos {
+  font-size: small;
+  color: #3f51b5;
+  text-decoration-thickness: 0.125em;
+  text-underline-offset: 1.5px;
+  font-weight: bold;
+}
+
+@keyframes spinner {
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+.tituloTarjetaLeida {
+  font-style: normal;
+  font-size: medium;
+}
+
+.tituloTarjetaNoLeida {
+  font-weight: bold;
+  font-size: large;
+}
+
+.subTituloTarjetaLeida {
+  font-style: normal;
+  font-size: smaller;
+}
+
+.subTituloTarjetaNoLeida {
+  font-weight: bold;
+  font-size: smaller;
+  background-color: #e0e0e0;
+  color: #3b3f42;
+  padding: 2px 2px;
+  border-radius: 5px;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+}
+
+.letra-pequenia {
+  font-size: x-small;
+}
+
+.propiedades-clave-tarjeta {
+  font-size: x-small;
+  color: gray;
+}
+
+.propiedades-clave-tarjeta-pequenio {
+  font-size: x-small;
+  color: gray;
+}
+
+.texto-mas-tarjeta {
+  font-size: smaller;
+  position: absolute;
+  left: 4px;
+  text-align: center;
+}
+
+.tarjeta-headers-align .mat-expansion-panel-header-title,
+.tarjeta-headers-align .mat-expansion-panel-header-description {
+flex-basis: 0;
+}
+
+.tarjeta-headers-align .mat-expansion-panel-header-description {
+justify-content: space-between;
+align-items: center;
+}
+
+.tarjeta-headers-align .mat-form-field + .mat-form-field {
+margin-left: 8px;
+}
+
+.tarjeta-re-size {
+  resize: both;
+  overflow: hidden;
+}
+
+// Configuración de estilos para los snacks
+
+.info-snackbar {
+  padding: 25px !important;
+  background-color: #cce5ff !important;
+  color: #2b639e !important;
+  font-size: x-small !important;
+  z-index: 100000 !important;
+}
+
+.info-snackbar button {
+  background-color: #cce5ff !important;
+  color: #2b639e !important;
+  border: #2b639e !important;
+}
+
+.cdk-overlay-container {
+  z-index: 100000 !important;
+}
+
+// ===================================
+// ESTILOS PARA LA VISTA DE CALENDARIO
+// ===================================
+
+/* Estilos para ocultar las horas diarias de la vista semanal */
+.cal-week-view .cal-time-events,
+.cal-week-view .cal-time-label-column {
+  display: none !important;
+}
+
+.cal-week-view .cal-day-headers {
+  padding-left: 0;
+}
+
+.cal-week-view .cal-events-row {
+  margin-left: 0 !important;
+}
+
+.cal-week-view .cal-event {
+  background-color: #d1e8ff;
+  border-color: #1e90ff;
+  color: #000000;
+}
+
+/* Extender la forma de las barras de la vista semanal */
+.cal-week-view .cal-all-day-events .cal-event {
+  padding: 0 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 75px;
+  line-height: 22px;
+}
+
+.cal-week-view .cal-all-day-events .cal-events-row {
+  position: relative;
+  height: 87px;
+  margin-left: 277px;
+}
+
+// Color de celda del dia actual
+.cal-week-view .cal-header.cal-today {
+background-color: #FFF2E5; //#e8fde7
+}
+
+// Color de celda al pasar el mouse
+.cal-week-view .cal-day-headers .cal-header:hover, .cal-week-view .cal-day-headers .cal-drag-over {
+background-color: #ededed; //#ededed
+}

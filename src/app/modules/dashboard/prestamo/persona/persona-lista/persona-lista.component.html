@@ -1,0 +1,51 @@
+<div fxLayout="row" class="contenedor-pgim-formulario mat-elevation-z1 animated fadeInDown">
+  <h2><strong>Personas</strong></h2>
+</div>
+
+
+<mat-divider></mat-divider>
+<mat-toolbar>
+  <button mat-raised-button color="primary" (click)="crearPersona()">Crear persona</button>
+</mat-toolbar>
+
+<!--Inicio contentenido-->
+
+<mat-sidenav-container>
+
+  <div class="supervision-wrap contenedor-pgim" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-evenly none">
+
+    <div class="full-width">
+
+       <!--Inicio contentenido de tarjeas-->
+       <mat-progress-bar *ngIf="enProceso" color="accent" mode="query"></mat-progress-bar>
+
+       <div class="alerta alerta-warning animated fadeInDown" *ngIf="lTblPersonaDTO?.length == 0">
+         Sin registros para mostrar
+       </div>
+
+      <div *ngIf="!enProceso" class="items-supervision-container">
+
+        <div class="item-supervision-wrap" *ngFor="let tblPersonaDTO of lTblPersonaDTO; let i = index"
+          [@animate]="{ value: '*',params: { delay: i * 100 + 'ms', y: '50px' } }" fxFlex="0 1 calc(33.3%)"
+          fxFlex.lg="0 1 calc(50%)" fxFlex.lt-lg="0 1 calc(50%)" fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%">
+          <app-persona-tarjeta [tblPersonaDTO]="tblPersonaDTO" (eventoPersonaParaModificar)="modificarPersona($event)"
+            (eventoPersonaParaConsultar)="consultarPersona($event)">
+          </app-persona-tarjeta>
+        </div>
+
+        <!--Inicio paginacion-->
+
+        <div fxLayoutAlign="end" class="items-supervision-paginacion">
+          <mat-paginator class="mat-paginator" *ngIf="paginador" [length]="paginador.totalElements"
+            [pageSize]="paginador.size" [pageIndex]="paginador.page" [pageSizeOptions]="paginador.pageSizeOptions"
+            (page)="paginar($event)">
+          </mat-paginator>
+        </div>
+
+        <!--Fin paginacion-->
+      </div>
+    </div>
+  </div>
+
+
+</mat-sidenav-container>

@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Crear persona</h2>
+<form fxLayout="column" [formGroup]="frmReactivo" (ngSubmit)="enviar()">
+
+  <div fxLayout="row" *ngIf="enProceso">
+    <mat-progress-bar mode="query" color="accent" fxFlex></mat-progress-bar>
+    <br />
+  </div>
+
+  <mat-dialog-content class="mat-typography" *ngIf="!enProceso">
+
+    <div fxLayout="row" fxLayoutGap="40px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+      <mat-form-field fxFlex>
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="noPersona"
+        [class.is-invalid]="tieneError('noPersona', 'any')"/>
+        <mat-progress-bar uppercase *ngIf="frmReactivo.controls['noPersona'].pending" mode="buffer">
+        </mat-progress-bar>
+        <mat-error *ngIf="tieneError('noPersona', 'required')">
+          Es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="40px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+      <mat-form-field fxFlex>
+        <mat-label>Apellido paterno</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="apPaterno"
+        [class.is-invalid]="tieneError('apPaterno', 'any')"/>
+        <mat-progress-bar uppercase *ngIf="frmReactivo.controls['apPaterno'].pending" mode="buffer">
+        </mat-progress-bar>
+        <mat-error *ngIf="tieneError('apPaterno', 'required')">
+          Es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="40px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+      <mat-form-field fxFlex>
+        <mat-label>Apellido materno</mat-label>
+        <input matInput type="text" autocomplete="off" formControlName="apMaterno"
+        [class.is-invalid]="tieneError('apMaterno', 'any')"/>
+        <mat-progress-bar uppercase *ngIf="frmReactivo.controls['apMaterno'].pending" mode="buffer">
+        </mat-progress-bar>
+        <mat-error *ngIf="tieneError('apMaterno', 'required')">
+          Es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>CERRAR</button>
+    <button mat-button type="submit" cdkFocusInitial color="primary"
+      *ngIf="parametroDialogo.accion !== 4 && !enProceso">
+      <mat-icon>save</mat-icon>
+      CREAR
+    </button>
+  </mat-dialog-actions>
+</form>

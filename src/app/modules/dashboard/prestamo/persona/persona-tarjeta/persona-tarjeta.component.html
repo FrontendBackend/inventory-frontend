@@ -1,0 +1,47 @@
+<mat-card class="separarTarjetas">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>person</mat-icon>
+    </div>
+    <mat-card-title fxFlex>
+      <div fxLayout="column" fxFlex>
+        <div fxLayout="row" fxFlex>
+          <span matTooltip="Usuario y nombre completo de la persona del Osinergmin">
+            {{ tblPersonaDTO.noPersona | uppercase }}
+            {{ tblPersonaDTO.apPaterno | uppercase }}
+            {{ tblPersonaDTO.apMaterno | uppercase }}
+          </span>
+        </div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="column">
+      <div fxLayout="row" class="text-muted p-line mat-caption" fxFlex>
+        <ul style="margin: 0px;">
+          <li>
+            <!-- Usuario/a: <span class="md-badge-alerta-especial-dark"><strong>{{tblPersonaDTO.noUsuario}}</strong></span> -->
+          </li>
+          <li>
+            <!-- Documento de identidad: <span><strong>{{tblPersonaDTO.descTipoDocumentoIdentidad}} - {{tblPersonaDTO.descCoDocumentoIdentidad}}</strong></span> -->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="center">
+    <div>
+      <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="solicitarModificacion(tblPersonaDTO)"
+        matTooltip="Editar">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="solicitarConsulta(tblPersonaDTO)"
+        matTooltip="Consultar">
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </div>
+    <div fxFlex>
+    </div>
+  </mat-card-actions>
+</mat-card>

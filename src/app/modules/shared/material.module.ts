@@ -25,8 +25,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {ErrorStateMatcher, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
@@ -42,7 +42,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { MatPaginatorImpl } from './models/mat-paginator';
+import { NgxCurrencyModule } from "ngx-currency";
+import { FormsModule } from '@angular/forms';
 
+const FECHA_FORMATOS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MM YYYY',
+  },
+};
 @NgModule({
   exports: [
     A11yModule,
@@ -88,7 +102,9 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    NgxCurrencyModule,
+    FormsModule
   ],
   imports: [
     A11yModule,
@@ -134,7 +150,15 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    NgxCurrencyModule,
+    FormsModule
+  ],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: MatPaginatorImpl},
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: MAT_DATE_FORMATS, useValue: FECHA_FORMATOS }
   ]
 })
 export class MaterialModule {}

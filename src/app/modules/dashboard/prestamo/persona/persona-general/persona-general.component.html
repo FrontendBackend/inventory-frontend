@@ -1,0 +1,270 @@
+<div class="main-container">
+
+  <br />
+
+  <div class="mat-typography">
+
+    <div>
+
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="10px">
+
+        <div fxLayoutGap="10px" fxLayout="column" fxFlex>
+
+          <!-- CARTA 1: Persona prestada -->
+          <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 2 * 100 + 'ms', y: '50px' } }"
+            fxFlex>
+
+            <mat-label><b>Persona prestada</b></mat-label>
+            <br> <br>
+
+            <form fxLayout="column" [formGroup]="frmReactivo" (ngSubmit)="enviar()">
+
+              <div fxLayout="row" *ngIf="enProceso">
+                <mat-progress-bar mode="query" color="accent" fxFlex></mat-progress-bar>
+                <br />
+              </div>
+
+              <div fxLayout="row" fxLayoutGap="10px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput type="text" formControlName="noPersona" autocomplete="off"
+                    [class.is-invalid]="tieneError('noPersona', 'any')" />
+                  <mat-error *ngIf="tieneError('noPersona', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Apellido paterno</mat-label>
+                  <input matInput type="text" formControlName="apPaterno" autocomplete="off"
+                    [class.is-invalid]="tieneError('apPaterno', 'any')" />
+                  <mat-error *ngIf="tieneError('apPaterno', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Apellido materno</mat-label>
+                  <input matInput type="text" formControlName="apMaterno" autocomplete="off"
+                    [class.is-invalid]="tieneError('apMaterno', 'any')" />
+                  <mat-error *ngIf="tieneError('apMaterno', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div align="start" *ngIf="!esFormularioSoloLectura">
+                <button type="submit" cdkFocusInitial mat-flat-button color="primary" [disabled]="enProceso">
+                  <mat-icon>save</mat-icon>
+                  {{ etiquetaAccion }}
+                </button>
+              </div>
+
+            </form>
+
+          </mat-card>
+
+          <!-- CARTA 2: Calcular prestamos -->
+          <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 3 * 100 + 'ms', y: '50px' } }"
+            fxFlex>
+
+            <mat-label><b>Calcular prestamos</b></mat-label>
+            <br> <br>
+
+            <form fxLayout="column" [formGroup]="frmReactivoPrestamo" (ngSubmit)="enviarPrestamo()">
+
+              <div fxLayout="row" *ngIf="enProcesoPrestamo">
+                <mat-progress-bar mode="query" color="accent" fxFlex></mat-progress-bar>
+                <br />
+              </div>
+
+              <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Fecha de prestamo</mat-label>
+                  <input matInput type="text" formControlName="fePrestamo" autocomplete="off"
+                    [matDatepicker]="dpFePrestamo" [class.is-invalid]="tieneError2('fePrestamo', 'any')" />
+                  <mat-datepicker-toggle matSuffix [for]="dpFePrestamo"></mat-datepicker-toggle>
+                  <mat-datepicker #dpFePrestamo></mat-datepicker>
+
+                  <mat-error *ngIf="tieneError2('fePrestamo', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Fecha de cancelación</mat-label>
+                  <input matInput type="text" formControlName="feCancelado" autocomplete="off"
+                    [matDatepicker]="dpFeCancelado" [class.is-invalid]="tieneError2('feCancelado', 'any')" />
+                  <mat-datepicker-toggle matSuffix [for]="dpFeCancelado"></mat-datepicker-toggle>
+                  <mat-datepicker #dpFeCancelado></mat-datepicker>
+                  <mat-error *ngIf="tieneError2('feCancelado', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+
+              </div>
+
+              <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Descripción</mat-label>
+                  <textarea type="text" #textAreaInfoAcceso matInput rows="5" maxlength="1024" autocomplete="off"
+                    formControlName="descripcion" [class.is-invalid]="tieneError2('descripcion', 'any')"></textarea>
+                  <mat-hint align="end">{{ textAreaInfoAcceso.value?.length || 0 }}/1024</mat-hint>
+                  <mat-error *ngIf="tieneError2('descripcion', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+
+                <mat-form-field fxFlex appearance="outline">
+                  <mat-label>Monto S/.</mat-label>
+                  <input matInput type="text" formControlName="monto" autocomplete="off" currencyMask
+                    [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+                    [class.is-invalid]="tieneError2('monto', 'any')" />
+                  <mat-error *ngIf="tieneError2('monto', 'required')">
+                    Es requerido
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div align="start" *ngIf="!esFormularioSoloLectura">
+                <button type="submit" cdkFocusInitial mat-flat-button color="primary" [disabled]="enProcesoPrestamo">
+                  <mat-icon>save</mat-icon>
+                  GUARDAR
+                </button>
+              </div>
+
+            </form>
+          </mat-card>
+        </div>
+
+        <!-- CARTA 3: Lista de prestamos -->
+        <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 4 * 100 + 'ms', y: '50px' } }"
+          fxFlex="80">
+          <div fxFlex>
+            <mat-label><b>Lista de prestamos</b></mat-label>
+            <br> <br>
+
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="20px" fxLayout.lt-sm="column" class="interior-top-toolbar">
+                <div fxFlex>
+                  <mat-label class="mat-caption">
+                    <span>N° de registros: {{ cantidadRegistros | number}}</span>
+                  </mat-label>
+                </div>
+                <div style="height: 25px;"></div>
+              </div>
+            </div>
+
+            <div fxLayout="row" *ngIf="enProcesoLista">
+              <mat-progress-bar mode="query" color="accent" fxFlex></mat-progress-bar>
+              <br />
+            </div>
+
+            <div class="alerta alerta-warning animated fadeInDown" *ngIf="cantidadRegistros == 0 && !enProcesoLista">
+              Sin registros para mostrar
+            </div>
+
+            <div class="example-table-container" *ngIf="cantidadRegistros > 0">
+
+              <mat-table class="simple-list contenedor" [dataSource]="dataSource" fxFlex>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="descripcion">
+                  <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.descripcion}} </mat-cell>
+                </ng-container>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="fePrestamo">
+                  <mat-header-cell *matHeaderCellDef> Fecha de prestamo </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.fePrestamo | date: 'dd/MM/yyyy HH:mm'}} </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="feCancelado">
+                  <mat-header-cell *matHeaderCellDef> Fecha de cancelación </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.feCancelado | date: 'dd/MM/yyyy HH:mm'}} </mat-cell>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="monto">
+                  <mat-header-cell *matHeaderCellDef> Monto S/. </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    {{element.monto | number:'1.2-2' }}
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="estado">
+                  <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+
+                    <span matTooltip="{{(element.estado === '1')? 'Cancelado': 'Pendiente'}}">
+                      <mat-icon [ngClass]="{'colorIconRed': element.estado === '0', 'colorIconVerde': element.estado === '1'}">
+                        {{(element.estado === '1') ? 'check_circle':'thumb_down_alt'}}
+                      </mat-icon>
+                    </span>
+                    &nbsp;&nbsp;
+                    <span>
+                      <mat-slide-toggle [disabled]="esFormularioSoloLectura" name="{{element}}" checked="{{(element.estado === '1')? true : false}}" (change)="cambiarEstado($event, element)"></mat-slide-toggle>
+                    </span>
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let row; let i = index;">
+                    <div fxFlex align="end">
+
+                      <button (click)="modificarPrestamo(row, i)" *ngIf="!esFormularioSoloLectura" mat-button>
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Más opciones">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="consultarPrestamo(row, i)">
+                          <mat-icon fontSet="material-icons-outlined">visibility</mat-icon>
+                          <span>Consultar detalle</span>
+                        </button>
+                        <button mat-menu-item (click)="eliminarPrestamo(row, i)" *ngIf="!esFormularioSoloLectura">
+                          <mat-icon>delete</mat-icon>
+                          <span>Eliminar</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+
+            </div>
+
+            <!-- PAGINACION -->
+            <div fxLayoutAlign="end">
+              <mat-paginator class="mat-paginator" *ngIf="paginador" [length]="paginador.totalElements"
+                [pageSize]="paginador.size" [pageIndex]="paginador.page" [pageSizeOptions]="paginador.pageSizeOptions"
+                (page)="paginar($event)">
+              </mat-paginator>
+            </div>
+
+            <mat-form-field appearance="outline">
+              <mat-label><b>Suma total</b></mat-label>
+              <input style="font-style: italic;" type="text" #textAreaInfoAcceso matInput autocomplete="off"
+              value="{{totalPrestamo | number:'1.2-2'}}" currencyMask  readonly />
+            </mat-form-field>
+          </div>
+        </mat-card>
+      </div>
+      <br>
+
+    </div>
+  </div>
+</div>

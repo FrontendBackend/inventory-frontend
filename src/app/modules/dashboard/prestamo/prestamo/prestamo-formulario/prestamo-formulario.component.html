@@ -1,0 +1,37 @@
+<div fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="10px">
+
+  <!-- -------------------------------------------------
+  ------------Titulo del detalle del prestamo-----------
+  ------------------------------------------------------>
+  <div>
+    <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 2 * 100 + 'ms', y: '50px' } }">
+      <button mat-button (click)="retornar()" matTooltip="Retornar a la ventana anterior" fxShow="false" fxShow.gt-sm>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-button (click)="retornar()" matTooltip="Retornar a la ventana anterior" fxHide="false" fxHide.gt-sm>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div fxFlex="40" fxLayout.lt-md="column" fxShow="false" fxShow.gt-sm></div>
+
+      <h2>
+        <b>
+          <span fxShow="false" fxShow.gt-sm>
+            Detalle del prestamo
+          </span>
+          <span fxHide="false" fxHide.gt-sm>
+            Detalle del prestamo
+          </span>
+        </b>
+      </h2>
+    </mat-card>
+  </div>
+
+
+  <!-- -----------------------------------------------------------------------------------------
+  ------------Formulario y tabla del historial del prestamo dentro de este componente-----------
+  ---------------------------------------------------------------------------------------------->
+
+    <!-- Formulario que se requerirá modificar y restar el monto por prestamo -->
+    <app-prestamo-general *ngIf="tblPrestamoDTO" [tblPersonaDTO]="tblPersonaDTO" [tblPrestamoDTO]="tblPrestamoDTO" [tipoAccionCrud]="tipoAccionCrud"></app-prestamo-general>
+</div>
