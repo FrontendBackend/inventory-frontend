@@ -1,5 +1,26 @@
 <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxLayoutGap.lt-md="10px">
   <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 3 * 100 + 'ms', y: '50px' } }" fxFlex>
+
+    <div class="alerta alerta-info animated fadeInDown">
+      <b>Nota importante</b>
+
+      <small style="font-style: italic;">
+        <p>
+          <li>
+            Al ingresar el <b>Monto a restar o sumar S/.</b> se deshabilitará el ingreso del <b>Monto S/.</b>
+          </li>
+          <li>
+            Dado que si el <b>Monto a restar o sumar S/.</b> que desea ingresar excede al <b>Monto S/.</b>, se
+            deshabilitará el botón de modificar.
+          </li>
+          <li>
+            Cada registro que se mostrará en el historial del prestamo dependerá del ingreso del <b>Monto a restar o
+              sumar S/.</b> mayor a <b>0</b>
+          </li>
+        </p>
+      </small>
+    </div>
+
     <label><b>Modificar el detalle del prestamo</b></label>
 
     <br> <br>
@@ -50,26 +71,57 @@
         </mat-form-field>
       </div>
 
+      <div fxLayout="row" fxLayoutGap="25px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+        <mat-label><small>Tipo operador( + / - )</small></mat-label>
+        <mat-slide-toggle color="primary" [disabled]="esFormularioSoloLectura" name="restarOSumar"
+          [checked]="flOperador" (change)="cambiarOperadorSumarOResta($event)"></mat-slide-toggle>
+      </div>
+
+      <br>
+
       <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
 
         <mat-form-field fxFlex appearance="outline">
           <mat-label>Monto S/.</mat-label>
-          <input matInput type="text" formControlName="monto" autocomplete="off" currencyMask
-            [options]="{ prefix: '', thousands: ',', decimal: '.' }" [class.is-invalid]="tieneError2('monto', 'any')" />
+          <input matInput #monto type="text" formControlName="monto" autocomplete="off" currencyMask
+            [options]="{ prefix: '', thousands: ',', decimal: '.' }" [class.is-invalid]="tieneError2('monto', 'any')"
+            [readonly]="habilitarLecturaMonto" />
           <mat-error *ngIf="tieneError2('monto', 'required')">
             Es requerido
           </mat-error>
         </mat-form-field>
 
+        <span>
+          <mat-icon matTooltip="{{flOperadorCadena === '1' ? 'Este operador va sumar': 'Este operador va restar'}}">
+            {{flOperadorCadena === '1' ? 'add': 'remove'}}
+          </mat-icon>
+        </span>
+
         <mat-form-field fxFlex appearance="outline">
           <mat-label>Monto a restar o sumar S/.</mat-label>
           <input matInput #inputMontoOperar formControlName="montoOperar" autocomplete="off" currencyMask
-            [options]="{ prefix: '', thousands: ',', decimal: '.' }" (keyup)="seCambioMontoSubTotal(inputMontoOperar.value)" matTooltip="Dar ENTER cuando haya ingresado el monto a restar(-) o sumar(+) para que de efecto el monto"/>
+            [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+            (keyup)="seCambioMontoSubTotal(inputMontoOperar.value)" />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="50px" fxLayoutGap.lt-md="0px" fxLayout.lt-md="column">
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Descripción del historial del prestamo</mat-label>
+          <textarea type="text" #descHistorialPr matInput rows="5" maxlength="1024" autocomplete="off"
+            formControlName="descripcionHistorial"
+            [class.is-invalid]="tieneError2('descripcionHistorial', 'any')"></textarea>
+          <mat-hint align="end">{{ descHistorialPr.value?.length || 0 }}/1024</mat-hint>
+          <mat-error *ngIf="tieneError2('descripcionHistorial', 'required')">
+            Es requerido
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div align="start" *ngIf="!esFormularioSoloLectura">
-        <button type="submit" cdkFocusInitial mat-flat-button color="primary" [disabled]="enProcesoPrestamo">
+        <button type="submit" cdkFocusInitial mat-flat-button color="primary"
+          [disabled]="enProcesoPrestamo || habilitarMontoPositivo">
           <mat-icon>save</mat-icon>
           {{accion}}
         </button>
@@ -79,11 +131,13 @@
   </mat-card>
 
   <!-- Lista de Historial del prestamo -->
-  <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 4 * 100 + 'ms', y: '50px' } }" fxFlex="65">
+  <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 4 * 100 + 'ms', y: '50px' } }"
+    fxFlex="65">
 
     <label><b>Historial del prestamo</b></label>
     <br><br>
 
-    <app-prestamo-historial-lista *ngIf="tblPrestamoDTO" [tblPrestamoDTO]="tblPrestamoDTO"></app-prestamo-historial-lista>
+    <app-prestamo-historial-lista *ngIf="tblPrestamoDTO"
+      [tblPrestamoDTO]="tblPrestamoDTO"></app-prestamo-historial-lista>
   </mat-card>
 </div>

@@ -13,35 +13,38 @@
 
     <!-- Weight Column -->
     <ng-container matColumnDef="fePrestamoHistorial">
-      <mat-header-cell *matHeaderCellDef> Fecha de registro </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> <strong>Fecha de registro</strong> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.fePrestamoHistorial | date: 'dd/MM/yyyy HH:mm'}} </mat-cell>
     </ng-container>
 
     <!-- Position Column -->
     <ng-container matColumnDef="descripcionHistorial">
-      <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> <strong>Descripción</strong> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.descripcionHistorial}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="montoSubtotalOperado">
-      <mat-header-cell *matHeaderCellDef> Monto origen S/.</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> <strong>Monto origen S/.</strong> </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.montoSubtotalOperado | number:'1.2-2'}} </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="montoOperar">
-      <mat-header-cell *matHeaderCellDef> Monto a restar S/. </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> <strong>Monto a restar S/.</strong> </mat-header-cell>
       <mat-cell *matCellDef="let element">
         {{element.montoOperar | number:'1.2-2'}}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagOperador">
-      <mat-header-cell *matHeaderCellDef> Tipo operador </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> <strong>Tipo operador</strong> </mat-header-cell>
       <mat-cell *matCellDef="let element">
 
-        {{(element.flagOperador === '0') ? 'Restado' : 'Sumado' }}
+        <strong
+          [ngClass]="{'alerta-danger': element.flagOperador === '0', 'alerta-success': element.flagOperador === '1'}">
+          {{(element.flagOperador === '0') ? 'Restado' : 'Sumado' }}
+        </strong>
 
       </mat-cell>
     </ng-container>
