@@ -4,8 +4,17 @@
 
 export const environment = {
   production: false,
-  base_url: "http://localhost:1999/inv/api/v1",
-  HOST: "http://localhost:1999/inv/api"
+  // base_url: "http://localhost:1999/inv/api/v1",
+  // HOST: "http://localhost:1999/inv/api"
+
+  /*
+  * ----------------------------------------------------
+  * ------- Descomentar cuando se utiliza Docker -------
+  * ----------------------------------------------------
+  */
+  base_url: "http://localhost:11999/inv/api/v1",
+  HOST: "http://localhost:11999/inv/api"
+
 };
 
 /*

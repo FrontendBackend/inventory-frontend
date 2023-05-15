@@ -14,7 +14,7 @@
           <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 2 * 100 + 'ms', y: '50px' } }"
             fxFlex>
 
-            <mat-label><b>Persona prestada</b></mat-label>
+            <mat-label><b>Persona</b></mat-label>
             <br> <br>
 
             <form fxLayout="column" [formGroup]="frmReactivo" (ngSubmit)="enviar()">
@@ -69,7 +69,7 @@
           <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 3 * 100 + 'ms', y: '50px' } }"
             fxFlex>
 
-            <mat-label><b>Calcular prestamos</b></mat-label>
+            <mat-label><b>Registrar deuda</b></mat-label>
             <br> <br>
 
             <form fxLayout="column" [formGroup]="frmReactivoPrestamo" (ngSubmit)="enviarPrestamo()">
@@ -142,11 +142,11 @@
           </mat-card>
         </div>
 
-        <!-- CARTA 3: Lista de prestamos -->
+        <!-- CARTA 3: Deudas Pendientes -->
         <mat-card class="mat-elevation-z8" [@animate]="{ value: '*',params: { delay: 4 * 100 + 'ms', y: '50px' } }"
           fxFlex="80">
           <div fxFlex>
-            <mat-label><b>Lista de prestamos</b></mat-label>
+            <mat-label><b>Deudas pendientes</b></mat-label>
             <br> <br>
 
             <div fxLayout="column">
