@@ -84,7 +84,7 @@
         <mat-form-field fxFlex appearance="outline">
           <mat-label>Monto S/.</mat-label>
           <input matInput #monto type="text" formControlName="monto" autocomplete="off" currencyMask
-            [options]="{ prefix: '', thousands: ',', decimal: '.' }" [class.is-invalid]="tieneError2('monto', 'any')"
+            [class.is-invalid]="tieneError2('monto', 'any')"
             [readonly]="habilitarLecturaMonto" />
           <mat-error *ngIf="tieneError2('monto', 'required')">
             Es requerido
@@ -100,7 +100,7 @@
         <mat-form-field fxFlex appearance="outline">
           <mat-label>Monto a restar o sumar S/.</mat-label>
           <input matInput #inputMontoOperar formControlName="montoOperar" autocomplete="off" currencyMask
-            [options]="{ prefix: '', thousands: ',', decimal: '.' }"
+
             (keyup)="seCambioMontoSubTotal(inputMontoOperar.value)" />
         </mat-form-field>
       </div>

@@ -43,7 +43,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { MatPaginatorImpl } from './models/mat-paginator';
-import { NgxCurrencyModule } from "ngx-currency";
 import { FormsModule } from '@angular/forms';
 
 const FECHA_FORMATOS = {
@@ -103,8 +102,8 @@ const FECHA_FORMATOS = {
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    NgxCurrencyModule,
-    FormsModule
+    FormsModule,
+
   ],
   imports: [
     A11yModule,
@@ -151,7 +150,6 @@ const FECHA_FORMATOS = {
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    NgxCurrencyModule,
     FormsModule
   ],
   providers: [
