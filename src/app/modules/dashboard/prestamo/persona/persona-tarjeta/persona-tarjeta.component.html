@@ -20,10 +20,12 @@
       <div fxLayout="row" class="text-muted p-line mat-caption" fxFlex>
         <ul style="margin: 0px;">
           <li>
-            <!-- Usuario/a: <span class="md-badge-alerta-especial-dark"><strong>{{tblPersonaDTO.noUsuario}}</strong></span> -->
-          </li>
-          <li>
-            <!-- Documento de identidad: <span><strong>{{tblPersonaDTO.descTipoDocumentoIdentidad}} - {{tblPersonaDTO.descCoDocumentoIdentidad}}</strong></span> -->
+            Estado de la deuda:
+            <span *ngIf="tblPersonaDTO.flEstadoDeuda" [ngClass]="{'alerta-danger': tblPersonaDTO.flEstadoDeuda === '0', 'alerta-success': tblPersonaDTO.flEstadoDeuda === '1'}">
+              <strong>
+                {{(tblPersonaDTO.flEstadoDeuda === '0') ? 'Pendiente' : 'Cancelado'}}
+              </strong>
+            </span>
           </li>
         </ul>
       </div>

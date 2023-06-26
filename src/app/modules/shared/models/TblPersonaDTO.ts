@@ -10,4 +10,5 @@ export class TblPersonaDTO {
 
   esRegistro: string;
 
+  flEstadoDeuda: string;
 }
